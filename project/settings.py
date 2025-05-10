@@ -98,7 +98,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'unistage_db',
-        'USER': 'user',
+        'USER': 'root',
         'PASSWORD': 'uniskrr916',
         'HOST': 'unistage.clkeki2ocr08.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
