@@ -6,6 +6,8 @@ from .serializers import PerformanceSerializer
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Count
+from collections import Counter
+
 
 @api_view(['GET'])
 def get_performances(request):
@@ -63,3 +65,34 @@ def top_liked_performances(request):
     ).order_by('-num_likes', 'id')[:3]
     serializer = PerformanceSerializer(performances, many=True, context={"request": request})
     return Response(serializer.data)
+
+@api_view(['GET'])
+def popular_songs(request):
+    artist_name = request.GET.get('artist')
+    limit = int(request.GET.get('limit', 10))
+    order = request.GET.get('order', 'desc')
+
+    # 1. 공연 필터링
+    performances = Performance.objects.exclude(setlist__isnull=True).exclude(setlist='')
+
+    if artist_name:
+        performances = performances.filter(artist__icontains=artist_name)
+
+    # 2. 곡 집계
+    song_counter = Counter()
+    for performance in performances:
+        songs = [s.strip() for s in performance.setlist.split(',') if s.strip()]
+        song_counter.update(songs)
+
+    # 3. 정렬
+    songs_sorted = (
+        song_counter.most_common() if order == 'desc'
+        else sorted(song_counter.items(), key=lambda x: x[1])
+    )
+
+    top_songs = songs_sorted[:limit]
+
+    # 4. 응답 구성
+    result = [{"title": title, "count": count} for title, count in top_songs]
+
+    return Response(result, status=status.HTTP_200_OK)
