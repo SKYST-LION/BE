@@ -84,9 +84,7 @@ CORS_ALLOW_METHODS = [
 
 ROOT_URLCONF = 'project.urls'
 
-CORS_ALLOW_ORIGINS = [
-    "http://localhost:3000",
-]
+CORS_ALLOW_ORIGINS = ["*"]
 
 CORS_ALLOW_CREDENTIALS = False
 
