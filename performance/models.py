@@ -4,6 +4,7 @@ from django.conf import settings
 class Performance(models.Model):
     artist = models.CharField(max_length=100)
     account = models.FloatField(null=True, blank=True)
+    price = models.PositiveIntegerField()
     description = models.TextField()
     date = models.DateTimeField()
     location = models.CharField(max_length=200)

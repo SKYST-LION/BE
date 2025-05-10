@@ -5,7 +5,7 @@ class TicketSerializer(serializers.ModelSerializer):
     performance = serializers.StringRelatedField()  # 공연 제목 표시용
     class Meta:
         model = Ticket
-        fields = ['id', 'performance', 'price', 'quantity', 'created_at']
+        fields = ['id', 'performance', 'quantity', 'created_at']
 
 class TicketPurchaseSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
