@@ -38,3 +38,4 @@ class UserLoginSerialzer(serializers.Serializer):
 
         data["user"] = user
         return data
+    
