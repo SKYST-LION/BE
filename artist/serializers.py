@@ -8,7 +8,7 @@ class ArtistSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Artist
-        fields = ['id', 'name', 'description', 'likes_count']
+        fields = ['id', 'name', 'likes_count']
 
     def get_likes_count(self, obj):
         return obj.likes.count()
