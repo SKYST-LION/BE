@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'user',
     'performance',
     'rest_framework_simplejwt',
-    'ticket',
 ]
 
 AUTH_USER_MODEL = 'user.CustomUser'
@@ -96,8 +95,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'unistage_db',
+        'USER': 'user',
+        'PASSWORD': 'uniskrr916',
+        'HOST': 'unistage.clkeki2ocr08.us-east-1.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 
