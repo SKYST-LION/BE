@@ -5,6 +5,7 @@ from .models import Performance
 from .serializers import PerformanceSerializer
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
+from django.db.models import Count
 
 @api_view(['GET'])
 def get_performances(request):
@@ -60,5 +61,5 @@ def top_liked_performances(request):
     performances = Performance.objects.annotate(
         num_likes=Count('likes')
     ).order_by('-num_likes', 'id')[:3]
-    serializer = PerformanceSerializer(performances, many=True)
+    serializer = PerformanceSerializer(performances, many=True, context={"request": request})
     return Response(serializer.data)

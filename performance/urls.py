@@ -7,5 +7,5 @@ urlpatterns = [
     path('create/', create_performance, name='performance_create'),  # /performance/create/
     path('<int:pk>/edit/', update_performance, name='performance_edit'), # /performance/1/edit/
     path('<int:pk>/like/', toggle_performance_like, name='performance-like'),
-    path('api/performances/top-liked/', name='top_liked_performances'),
+    path('top-liked/', top_liked_performances,name='top_liked_performances'),
 ]
