@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'artist',
     'reservation',
+    'coordinate',
 ]
 
 AUTH_USER_MODEL = 'user.CustomUser'
