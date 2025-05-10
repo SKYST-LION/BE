@@ -7,7 +7,7 @@ class PerformanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Performance
         fields = [
-            'id', 'artist', 'account', 'price', 'description', 'date', 'location',
+            'id', 'artist', 'account', 'price', 'description', 'date', 'setlist', 'location',
             'latitude', 'longitude', 'cover_image',
             'created_by', 'created_at'
         ]
