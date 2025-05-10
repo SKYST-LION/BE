@@ -4,7 +4,7 @@ from django.conf import settings
 class Performance(models.Model):
     artist = models.CharField(max_length=100)
     account = models.FloatField(null=True, blank=True)
-    price = models.PositiveIntegerField()
+    price = models.PositiveIntegerField(null=True)
     description = models.TextField()
     date = models.DateTimeField()
     setlist = models.TextField(blank=True, help_text="쉼표로 구분된 곡명을 입력하세요", null=True)

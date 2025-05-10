@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'performance',
     'rest_framework_simplejwt',
     'ticket',
+    'corsheaders',
 ]
 
 AUTH_USER_MODEL = 'user.CustomUser'
@@ -68,9 +69,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
