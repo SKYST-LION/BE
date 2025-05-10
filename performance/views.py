@@ -27,6 +27,19 @@ def create_performance(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def toggle_performance_like(request, performance_id):
+    performance = Performance.objects.get(id=performance_id)
+    user = request.user
+
+    if user in performance.likes.all():
+        performance.likes.remove(user)
+        return Response({'message': '좋아요 취소'}, status=status.HTTP_200_OK)
+    else:
+        performance.likes.add(user)
+        return Response({'message': '좋아요 추가'}, status=status.HTTP_200_OK)
+
 @api_view(['PATCH'])
 # @permission_classes([IsAuthenticated])
 def update_performance(request, pk):

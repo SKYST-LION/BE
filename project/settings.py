@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-rk45l1@3ouw(%k@p4a3(an(@uxx9p%f1_=yle+f#b=fms&yjc*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['44.203.122.246',
+                 '127.0.0.1',]
 
 
 # Application definition
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'performance',
     'rest_framework_simplejwt',
     'ticket',
+    'corsheaders',
+    'artist',
 ]
 
 AUTH_USER_MODEL = 'user.CustomUser'
@@ -61,6 +64,8 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -70,7 +75,32 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+CORS_ALLOW_HEADERS = [
+    "authorization",
+    "content-type",
+    "accept",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
 ROOT_URLCONF = 'project.urls'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # 또는 실제 프론트 주소
+]
+
+CORS_ALLOW_CREDENTIALS = True
 
 TEMPLATES = [
     {
