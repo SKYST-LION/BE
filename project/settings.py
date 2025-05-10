@@ -96,7 +96,9 @@ CORS_ALLOW_HEADERS = [
 
 ROOT_URLCONF = 'project.urls'
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # 또는 실제 프론트 주소
+]
 
 CORS_ALLOW_CREDENTIALS = True
 
