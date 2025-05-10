@@ -1,8 +1,8 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers import UserSignupSerializer, UserLoginSerialzer
 
@@ -41,3 +41,15 @@ def login_view(request):
         return response
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_info_view(request):
+    user = request.user  # JWT 토큰에서 인증된 사용자
+
+    return Response({
+        "id": user.id,
+        "email": user.email,
+        "nickname": user.nickname,
+    }, status=status.HTTP_200_OK)
