@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'user',
     'performance',
     'rest_framework_simplejwt',
+    'ticket',
 ]
 
 AUTH_USER_MODEL = 'user.CustomUser'
