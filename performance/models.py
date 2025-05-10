@@ -7,7 +7,7 @@ class Performance(models.Model):
     price = models.PositiveIntegerField()
     description = models.TextField()
     date = models.DateTimeField()
-    setlist = models.TextField(blank=True, help_text="쉼표로 구분된 곡명을 입력하세요", blank=True, null=True)
+    setlist = models.TextField(blank=True, help_text="쉼표로 구분된 곡명을 입력하세요", null=True)
     location = models.CharField(max_length=200)
     latitude = models.FloatField(null=True, blank=True)   # 위도
     longitude = models.FloatField(null=True, blank=True)  # 경도
