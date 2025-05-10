@@ -82,11 +82,21 @@ CORS_ALLOW_METHODS = [
     "PUT",
 ]
 
+CORS_ALLOW_HEADERS = [
+    "authorization",
+    "content-type",
+    "accept",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
 ROOT_URLCONF = 'project.urls'
 
-CORS_ALLOW_ORIGINS = ["*"]
+CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ALLOW_CREDENTIALS = False
+CORS_ALLOW_CREDENTIALS = True
 
 TEMPLATES = [
     {
