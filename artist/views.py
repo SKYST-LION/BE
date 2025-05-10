@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Artist
 from .serializers import ArtistSerializer
+from django.db.models import Count
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -30,3 +31,17 @@ def toggle_like_artist(request, artist_id):
     else:
         artist.likes.add(user)
         return Response({'message': '좋아요 추가됨'}, status=status.HTTP_200_OK)
+    
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def my_liked_artists(request):
+    user = request.user
+    liked_artists = Artist.objects.filter(likes=user)
+    serializer = ArtistSerializer(liked_artists, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def artist_ranking(request):
+    artists = Artist.objects.annotate(like_count=Count('likes')).order_by('-like_count', '-id')
+    serializer = ArtistSerializer(artists, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

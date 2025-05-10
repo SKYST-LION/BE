@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'ticket',
     'corsheaders',
+    'artist',
 ]
 
 AUTH_USER_MODEL = 'user.CustomUser'
